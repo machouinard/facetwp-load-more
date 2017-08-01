@@ -28,7 +28,7 @@ class FacetWP_Load_More_Addon
     function shortcode( $output, $atts ) {
         if ( isset( $atts['load_more'] ) ) {
             $label = isset( $atts['label'] ) ? $atts['label'] : __( 'Load more', 'fwp-load-more' );
-            $output = '<button>' . esc_attr( $label ) . '</button>';
+            $output = '<button class="fwp-load-more">' . esc_attr( $label ) . '</button>';
         }
         return $output;
     }
