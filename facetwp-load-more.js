@@ -15,7 +15,6 @@
     });
 
     $(document).on('click', '.fwp-load-more', function() {
-        $('.fwp-load-more').html('Loading...');
         FWP.is_load_more = true;
         FWP.paged = parseInt(FWP.settings.pager.page) + 1;
         FWP.soft_refresh = true;
@@ -24,12 +23,7 @@
 
     $(document).on('facetwp-loaded', function() {
         if (FWP.settings.pager.page < FWP.settings.pager.total_pages) {
-            if (! FWP.loaded && 1 > $('.fwp-load-more').length) {
-                $('.facetwp-template').after('<button class="fwp-load-more">Load more</button>');
-            }
-            else {
-                $('.fwp-load-more').html('Load more').show();
-            }
+            $('.fwp-load-more').show();
         }
         else {
             $('.fwp-load-more').hide();
