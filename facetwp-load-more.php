@@ -16,6 +16,25 @@ class FacetWP_Load_More_Addon
     function __construct() {
         add_filter( 'facetwp_assets', array( $this, 'assets' ) );
         add_filter( 'facetwp_shortcode_html', array( $this, 'shortcode' ), 10, 2 );
+        add_filter( 'facetwp_query_args', array( $this, 'query_args' ), 10, 2 );
+    }
+
+
+    /**
+     * On pageload, update posts_per_page if we detect a "load_more" URL variable
+     */
+    function query_args( $args, $class ) {
+        if ( isset( $class->ajax_params['is_preload'] ) ) {
+            $url_var = FWP()->helper->get_setting( 'prefix' ) . 'load_more';
+
+            if ( isset( $class->http_params['get'][ $url_var ] ) ) {
+                $paged = (int) $class->http_params['get'][ $url_var ];
+                $per_page = (int) empty( $args['posts_per_page'] ) ? get_option( 'posts_per_page' ) : $args['posts_per_page'];
+                $args['posts_per_page'] = ( $paged * $per_page );
+            }
+        }
+
+        return $args;
     }
 
 

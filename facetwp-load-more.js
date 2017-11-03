@@ -1,6 +1,6 @@
 (function($) {
     $(function() {
-        if ('object' != typeof FWP) {
+        if ('object' !== typeof FWP) {
             return;
         }
 
@@ -15,9 +15,12 @@
     });
 
     $(document).on('click', '.fwp-load-more', function() {
-        FWP.is_load_more = true;
-        FWP.paged = parseInt(FWP.settings.pager.page) + 1;
-        FWP.soft_refresh = true;
+        FWP.is_load_more = true; // set the flag
+        FWP.load_more_paged += 1; // next page
+        FWP.facets['load_more'] = [FWP.load_more_paged]; // trick into adding URL var
+        FWP.paged = FWP.load_more_paged; // grab the next page of results
+        FWP.soft_refresh = true; // don't process facets
+        FWP.is_reset = true; // don't parse facets
         FWP.refresh();
     });
 
@@ -32,7 +35,14 @@
 
     $(document).on('facetwp-refresh', function() {
         if (! FWP.loaded) {
-            FWP.paged = 1;
+            var uv = FWP_HTTP.url_vars;
+            var paged = ('undefined' !== typeof uv.load_more) ? uv.load_more : 1;
+            FWP.load_more_paged = parseInt(paged);
+        }
+        else {
+            if (! FWP.is_load_more) {
+                FWP.load_more_paged = 1;
+            }
         }
     });
 })(jQuery);
