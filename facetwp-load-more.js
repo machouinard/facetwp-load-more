@@ -15,6 +15,9 @@
     });
 
     $(document).on('click', '.fwp-load-more', function() {
+        var loading_text = FWP_JSON.load_more.loading_text;
+        $('.fwp-load-more').html(loading_text);
+
         FWP.is_load_more = true; // set the flag
         FWP.load_more_paged += 1; // next page
         FWP.facets['load_more'] = [FWP.load_more_paged]; // trick into adding URL var
@@ -25,6 +28,9 @@
     });
 
     $(document).on('facetwp-loaded', function() {
+        var default_text = FWP_JSON.load_more.default_text;
+        $('.fwp-load-more').html(default_text);
+
         if (FWP.settings.pager.page < FWP.settings.pager.total_pages) {
             $('.fwp-load-more').show();
         }

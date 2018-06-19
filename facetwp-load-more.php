@@ -39,7 +39,16 @@ class FacetWP_Load_More_Addon
 
 
     function assets( $assets ) {
+
+        // Register the JS
         $assets['facetwp-load-more.js'] = plugins_url( '', __FILE__ ) . '/facetwp-load-more.js';
+
+        // Set the translations
+        FWP()->display->json['load_more'] = array(
+            'default_text' => __( 'Load more', 'fwp-load-more' ),
+            'loading_text' => __(' Loading...', 'fwp-load-more' )
+        );
+
         return $assets;
     }
 
