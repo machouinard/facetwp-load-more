@@ -15,8 +15,7 @@
     });
 
     $(document).on('click', '.fwp-load-more', function() {
-        var loading_text = FWP_JSON.load_more.loading_text;
-        $('.fwp-load-more').html(loading_text);
+        $('.fwp-load-more').html(FWP_JSON.load_more.loading_text);
 
         FWP.is_load_more = true; // set the flag
         FWP.load_more_paged += 1; // next page
@@ -28,8 +27,7 @@
     });
 
     $(document).on('facetwp-loaded', function() {
-        var default_text = FWP_JSON.load_more.default_text;
-        $('.fwp-load-more').html(default_text);
+        $('.fwp-load-more').html(FWP_JSON.load_more.default_text);
 
         if (FWP.settings.pager.page < FWP.settings.pager.total_pages) {
             $('.fwp-load-more').show();
@@ -43,6 +41,7 @@
         if (! FWP.loaded) {
             var uv = FWP_HTTP.url_vars;
             var paged = ('undefined' !== typeof uv.load_more) ? uv.load_more : 1;
+            FWP_JSON.load_more.default_text = $('.fwp-load-more').html();
             FWP.load_more_paged = parseInt(paged);
         }
         else {
