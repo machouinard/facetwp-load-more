@@ -22,7 +22,6 @@
         FWP.facets['load_more'] = [FWP.load_more_paged]; // trick into adding URL var
         FWP.paged = FWP.load_more_paged; // grab the next page of results
         FWP.soft_refresh = true; // don't process facets
-        FWP.is_reset = true; // don't parse facets
         FWP.refresh();
     });
 
