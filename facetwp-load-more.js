@@ -4,7 +4,7 @@
             return;
         }
 
-        wp.hooks.addFilter('facetwp/template_html', function(resp, params) {
+        FWP.hooks.addFilter('facetwp/template_html', function(resp, params) {
             if (FWP.is_load_more) {
                 FWP.is_load_more = false;
                 $('.facetwp-template').append(params.html);
