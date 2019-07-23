@@ -17,6 +17,15 @@ class FacetWP_Load_More_Addon
         add_filter( 'facetwp_assets', array( $this, 'assets' ) );
         add_filter( 'facetwp_shortcode_html', array( $this, 'shortcode' ), 10, 2 );
         add_filter( 'facetwp_query_args', array( $this, 'query_args' ), 10, 2 );
+        add_action( 'init', array( $this, 'load_textdomain' ) );
+    }
+
+
+    /**
+     * Translation support
+     */
+    function load_textdomain() {
+        load_plugin_textdomain( 'fwp-load-more' );
     }
 
 
