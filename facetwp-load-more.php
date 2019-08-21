@@ -2,7 +2,7 @@
 /*
 Plugin Name: FacetWP - Load More
 Description: Adds a shortcode to generate a "Load more" button
-Version: 0.4.3
+Version: 0.4.4
 Author: FacetWP, LLC
 Author URI: https://facetwp.com/
 GitHub URI: facetwp/facetwp-load-more
