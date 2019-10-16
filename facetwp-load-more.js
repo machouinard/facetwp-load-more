@@ -7,7 +7,15 @@
         FWP.hooks.addFilter('facetwp/template_html', function(resp, params) {
             if (FWP.is_load_more) {
                 FWP.is_load_more = false;
-                $('.facetwp-template').append(params.html);
+
+                // layout builder
+                if ( 0 < $('.fwpl-layout').length ) {
+                    $('.fwpl-layout').append($(params.html).html());
+                }
+                // other
+                else {
+                    $('.facetwp-template').append(params.html);
+                }
                 return true;
             }
             return resp;
